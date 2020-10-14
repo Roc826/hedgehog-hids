@@ -6,6 +6,7 @@ import (
 	"errors"
 	"github.com/smallnest/rpcx/protocol"
 	"github.com/smallnest/rpcx/server"
+	"hedgehog-hids-server/action"
 	"hedgehog-hids-server/common"
 	"hedgehog-hids-server/log"
 )
@@ -19,7 +20,8 @@ func (w *Watcher) PutInfo(ctx context.Context, info *common.ComputerInfo, result
 }
 
 func (w *Watcher) GetInfo(ctx context.Context, info *common.ComputerInfo, result *common.ClientConfig) error{
-	print("getinfo")
+	action.ComputerInfoSave(*info)
+	log.Info("getconfig:", info.IP)
 	return nil
 }
 
